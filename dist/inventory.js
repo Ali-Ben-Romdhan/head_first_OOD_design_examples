@@ -25,20 +25,21 @@ var Inventory = /** @class */ (function () {
             var guitar = _a[_i];
             // Ignore serial number since that's unique
             // Ignore price since that's unique
-            if (searchGuitar.getBuilder() !== guitar.getBuilder()) {
+            var guitarSpec = guitar.getGuitarSpec();
+            if (searchGuitar.getBuilder() !== guitarSpec.getBuilder()) {
                 continue;
             }
             var model = searchGuitar.getModel().toLowerCase();
-            if (model && model !== '' && model !== guitar.getModel().toLowerCase()) {
+            if (model && model !== '' && model !== guitarSpec.getModel().toLowerCase()) {
                 continue;
             }
-            if (searchGuitar.getType() !== guitar.getType()) {
+            if (searchGuitar.getType() !== guitarSpec.getType()) {
                 continue;
             }
-            if (searchGuitar.getBackWood() !== guitar.getBackWood()) {
+            if (searchGuitar.getBackWood() !== guitarSpec.getBackWood()) {
                 continue;
             }
-            if (searchGuitar.getTopWood() !== guitar.getTopWood()) {
+            if (searchGuitar.getTopWood() !== guitarSpec.getTopWood()) {
                 continue;
             }
             matchingGuitars.push(guitar);

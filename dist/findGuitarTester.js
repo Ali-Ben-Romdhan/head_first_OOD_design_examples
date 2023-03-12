@@ -12,13 +12,13 @@ var FindGuitarTester = /** @class */ (function () {
         // Set up Rick's guitar inventory
         var inventory = new inventory_1.Inventory();
         this.initializeInventory(inventory);
-        var whatErinLikes = new guitar_1.Guitar('', 0, Builder_1.Builder.FENDER, 'Stratocastor', Type_1.Type.ELECTRIC, Wood_1.Wood.ALDER, Wood_1.Wood.ALDER);
+        var whatErinLikes = new guitar_1.GuitarSpec(Builder_1.Builder.FENDER, 'Stratocastor', Type_1.Type.ELECTRIC, Wood_1.Wood.ALDER, Wood_1.Wood.ALDER);
         var guitars = inventory.search(whatErinLikes);
         if (guitars.length > 0) {
-            console.log(guitars);
             guitars.forEach(function (guitar) {
+                var guitarSpec = guitar.guitarSpec;
                 if (guitar !== null) {
-                    console.log("Erin, you might like this ".concat(guitar.getBuilder(), " ").concat(guitar.getModel(), " ").concat(guitar.getType(), " guitar:\n  ").concat(guitar.getBackWood(), " back and sides,\n  ").concat(guitar.getTopWood(), " top.\n  You can have it for only $").concat(guitar.getPrice(), "!"));
+                    console.log("Erin, you might like this ".concat(guitarSpec.getBuilder(), " ").concat(guitarSpec.getModel(), " ").concat(guitarSpec.getType(), " guitar:\n  ").concat(guitarSpec.getBackWood(), " back and sides,\n  ").concat(guitarSpec.getTopWood(), " top.\n  You can have it for only $").concat(guitar.getPrice(), "!"));
                 }
                 else {
                     console.log('Sorry, Erin, we have nothing for you.');

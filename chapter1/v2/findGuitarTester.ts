@@ -1,5 +1,5 @@
 import { Inventory } from './inventory';
-import { Guitar } from './guitar';
+import { Guitar, GuitarSpec } from './guitar';
 import { Builder } from './Builder';
 import { Type } from './Type';
 import { Wood } from './Wood';
@@ -10,9 +10,7 @@ class FindGuitarTester {
     const inventory: Inventory = new Inventory();
     this.initializeInventory(inventory);
 
-    const whatErinLikes: Guitar = new Guitar(
-      '',
-      0,
+    const whatErinLikes: GuitarSpec = new GuitarSpec(
       Builder.FENDER,
       'Stratocastor',
       Type.ELECTRIC,
@@ -21,12 +19,13 @@ class FindGuitarTester {
     );
 
     const guitars: Guitar[] = inventory.search(whatErinLikes);
-    if (guitars.length > 0) {      
+    if (guitars.length > 0) {
       guitars.forEach((guitar: Guitar) => {
+        const guitarSpec = guitar.guitarSpec;
         if (guitar !== null) {
-          console.log(`Erin, you might like this ${guitar.getBuilder()} ${guitar.getModel()} ${guitar.getType()} guitar:
-  ${guitar.getBackWood()} back and sides,
-  ${guitar.getTopWood()} top.
+          console.log(`Erin, you might like this ${guitarSpec.getBuilder()} ${guitarSpec.getModel()} ${guitarSpec.getType()} guitar:
+  ${guitarSpec.getBackWood()} back and sides,
+  ${guitarSpec.getTopWood()} top.
   You can have it for only $${guitar.getPrice()}!`);
         } else {
           console.log('Sorry, Erin, we have nothing for you.');

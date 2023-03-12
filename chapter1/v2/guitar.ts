@@ -1,44 +1,25 @@
-import { Builder } from "./Builder";
-import { Type } from "./Type";
-import { Wood } from "./Wood";
+import { Builder } from './Builder';
+import { Type } from './Type';
+import { Wood } from './Wood';
 
-export class Guitar {
-  private serialNumber: string;
+export class GuitarSpec {
   private builder: Builder;
   private model: string;
   private type: Type;
   private backWood: Wood;
   private topWood: Wood;
-  private price: number;
-
   constructor(
-    serialNumber: string,
-    price: number,
     builder: Builder,
     model: string,
     type: Type,
     backWood: Wood,
     topWood: Wood
   ) {
-    this.serialNumber = serialNumber;
-    this.price = price;
     this.builder = builder;
     this.model = model;
     this.type = type;
     this.backWood = backWood;
     this.topWood = topWood;
-  }
-
-  public getSerialNumber(): string {
-    return this.serialNumber;
-  }
-
-  public getPrice(): number {
-    return this.price;
-  }
-
-  public setPrice(newPrice: number): void {
-    this.price = newPrice;
   }
 
   public getBuilder(): Builder {
@@ -59,5 +40,39 @@ export class Guitar {
 
   public getTopWood(): Wood {
     return this.topWood;
+  }
+}
+
+export class Guitar {
+  private serialNumber: string;
+  private price: number;
+  guitarSpec: GuitarSpec;
+  constructor(
+    serialNumber: string,
+    price: number,
+    builder: Builder,
+    model: string,
+    type: Type,
+    backWood: Wood,
+    topWood: Wood,
+  ) {
+    this.serialNumber = serialNumber;
+    this.price = price;
+    this.guitarSpec = new GuitarSpec(builder, model, type, backWood, topWood);
+  }
+
+  public getSerialNumber(): string {
+    return this.serialNumber;
+  }
+
+  public getPrice(): number {
+    return this.price;
+  }
+
+  public setPrice(newPrice: number): void {
+    this.price = newPrice;
+  }
+  getGuitarSpec(): GuitarSpec {
+    return this.guitarSpec;
   }
 }

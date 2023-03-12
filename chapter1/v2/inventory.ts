@@ -1,5 +1,5 @@
 import { Builder } from "./Builder";
-import { Guitar } from "./guitar";
+import { Guitar, GuitarSpec } from "./guitar";
 import { Type } from "./Type";
 import { Wood } from "./Wood";
 
@@ -26,25 +26,26 @@ export class Inventory {
     return null;
   }
 
-  public search(searchGuitar: Guitar): Guitar[] {
+  public search(searchGuitar: GuitarSpec): Guitar[] {
     const matchingGuitars: Guitar[] = [];
     for (const guitar of this.guitars) {
       // Ignore serial number since that's unique
       // Ignore price since that's unique
-      if (searchGuitar.getBuilder() !== guitar.getBuilder()) {
+      const guitarSpec = guitar.getGuitarSpec();
+      if (searchGuitar.getBuilder() !== guitarSpec.getBuilder()) {
         continue;
       }
       const model = searchGuitar.getModel().toLowerCase();
-      if (model && model !== '' && model !== guitar.getModel().toLowerCase()) {
+      if (model && model !== '' && model !== guitarSpec.getModel().toLowerCase()) {
         continue;
       }
-      if (searchGuitar.getType() !== guitar.getType()) {
+      if (searchGuitar.getType() !== guitarSpec.getType()) {
         continue;
       }
-      if (searchGuitar.getBackWood() !== guitar.getBackWood()) {
+      if (searchGuitar.getBackWood() !== guitarSpec.getBackWood()) {
         continue;
       }
-      if (searchGuitar.getTopWood() !== guitar.getTopWood()) {
+      if (searchGuitar.getTopWood() !== guitarSpec.getTopWood()) {
         continue;
       }
       matchingGuitars.push(guitar);

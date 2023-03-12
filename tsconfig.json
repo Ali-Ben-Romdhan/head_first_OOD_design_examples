@@ -6,9 +6,9 @@
     "sourceMap": true,
     "target": "es5",
     "outDir": "dist",
-    "rootDir": "chapter1"
+    "rootDir": "chapter1/v2"
   },
   "include": [
-    "./"
+    "./chapter1/v2/**/*.ts"
   ]
 }
